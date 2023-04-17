@@ -40,6 +40,7 @@ main {
     transition: left 250ms ease-in, width 250ms ease-in;
 }
 
+//This will be added as a class when sidenav opens
 .main-area-shrink {
     width: calc(100% - var(--side-nav-open-width));
     left: var(--side-nav-open-width);

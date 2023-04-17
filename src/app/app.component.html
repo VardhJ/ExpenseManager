@@ -4,5 +4,7 @@
 
 <!-- Class gets applied if menuButtonStatus is true -->
 <app-side-nav [ngClass]="{'app-side-nav-open': menuButtonStatus}"></app-side-nav>
-
-<app-footer></app-footer>
+<main [ngClass]="{'main-area-shrink': menuButtonStatus}">
+    <app-months></app-months>
+    <app-footer></app-footer>
+</main>
