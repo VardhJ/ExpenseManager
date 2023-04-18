@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -18,13 +18,15 @@ export class LoginPageComponent {
   };
   msg = "";
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private authser: AuthService) { }
 
   onLogin() {
     this.http.post('http://localhost:3000/api/login', this.user).subscribe(
       res => {
         console.log(res);
         alert("Successful Login");
+        // Update the authentication status
+        this.authser.setLoggedIn(true, res);
         this.router.navigate(['home']);
       },
       err => {
