@@ -13,20 +13,26 @@
             </a>
         </li>
         <li class="nav-list-item">
-            <a href="/home">
+            <a href="/reports">
                 Reports and analysis
             </a>
         </li>
-        <li class="nav-list-item" *ngIf="auth.isLoggedIn">
-            <a href="#">
-                User name: <br>{{ userEmail }}
-            </a>
-        </li>
         <li class="nav-list-item">
-            <a href="/" (click)="logout()">
-                LogOut
+            <a href="/advice">
+                Financial Advice
             </a>
         </li>
+        <div class="userinfo">
+            <h5 *ngIf="auth.isLoggedIn">
+                User name: <br>{{ userEmail }}
+            </h5>
+            <li class="nav-list-item">
+                <a href="/" (click)="logout()">
+                    LogOut
+                </a>
+            </li>
+        </div>
+
     </ul>
 
 </div>

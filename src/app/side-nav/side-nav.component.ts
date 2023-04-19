@@ -11,7 +11,7 @@ export class SideNavComponent {
 
   constructor(public auth: AuthService) { }
   ngOnInit() {
-    this.userEmail = localStorage.getItem('user');;
+    this.userEmail = localStorage.getItem('userEmail');;
   }
 
   logout() {

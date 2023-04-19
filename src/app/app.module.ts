@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthService } from './services/auth.service';
 import { AddComponent } from './add/add.component';
+import { ReportsComponent } from './reports/reports.component';
+import { AdviceComponent } from './advice/advice.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { AddComponent } from './add/add.component';
     FooterComponent,
     LoginPageComponent,
     AddComponent,
+    ReportsComponent,
+    AdviceComponent,
   ],
   imports: [
     BrowserModule,

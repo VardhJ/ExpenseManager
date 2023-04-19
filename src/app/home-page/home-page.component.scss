@@ -1,0 +1,58 @@
+.total-money {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.transaction-category {
+    margin-left: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 3rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #f7f7f7;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.service {
+    flex: 1 1 30%;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}

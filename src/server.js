@@ -25,7 +25,18 @@ mongoose
 // Define user schema
 const userSchema = new mongoose.Schema({
     email: String,
-    password: String
+    password: String,
+    totalMoney: { type: Number, default: 0 },
+    transactions: [{
+        money: {
+            type: Number,
+            required: true
+        },
+        category: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 // Create user model
@@ -60,7 +71,9 @@ app.post('/api/register', async (req, res) => {
 
     user = new User({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        totalMoney: 0,
+        transactions: []
     });
 
     await user.save();

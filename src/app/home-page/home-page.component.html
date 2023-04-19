@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="service">
+        <h2>Expense Categories</h2>
+        <p>Create and manage categories to organize your expenses.</p>
+    </div>
+    <div class="service">
+        <h2>Add and Edit Expenses</h2>
+        <p>Add new expenses and edit existing ones.</p>
+    </div>
+    <div class="service">
+        <h2>Reports and Analytics</h2>
+        <p>View reports and analytics on your spending.</p>
+    </div>
+    <div class="service">
+        <h2>Budgets and Alerts</h2>
+        <p>Set budgets and receive alerts when you exceed them.</p>
+    </div>
+</div>
+<h1>Welcome to your dashboard</h1>
+
+<!-- Displaying total money of current user -->
+<div class="total-money">
+    <h2>Total Money</h2>
+    <p>{{totalMoney}}</p>
+</div>
+
+<!-- Displaying list of previous transactions -->
+<div class="transactions">
+    <h2>Previous Transactions</h2>
+    <ul>
+        <li *ngFor="let transaction of transactions">
+            <span class="transaction-amount">{{transaction.amount}}</span>
+            <span class="transaction-category">{{transaction.category}}</span>
+        </li>
+    </ul>
+</div>

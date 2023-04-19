@@ -23,7 +23,8 @@ export class AuthService {
   setLoggedIn(value: boolean, user: any) {
     this.loggedInStatus = value;
     this.user = user;
-    localStorage.setItem('user', this.user.email)
+    localStorage.setItem('user', JSON.stringify(this.user)); // stringify the user object before storing
+    localStorage.setItem('userEmail', this.user.email)
     console.log(user)
   }
 
@@ -33,6 +34,15 @@ export class AuthService {
 
   get currentUser() {
     return this.user;
+  }
+
+  getCurrentUser() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      return JSON.parse(storedUser);
+    } else {
+      return null;
+    }
   }
 
   logout() {

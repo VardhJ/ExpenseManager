@@ -17,11 +17,15 @@ interface LoginResponse {
 export class LoginPageComponent {
   newUser = {
     email: '',
-    password: ''
+    password: '',
+    totalMoney: 0,
+    transactions: []
   }
   user = {
     email: '',
-    password: ''
+    password: '',
+    totalMoney: 0,
+    transactions: []
   };
 
   arrId: number[] = [];

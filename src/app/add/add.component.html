@@ -1,0 +1,13 @@
+<h2>Add Income/Expense</h2>
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="money">Money:</label>
+        <input type="number" class="form-control" id="money" [(ngModel)]="transaction.money" name="money" required>
+    </div>
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" id="category" [(ngModel)]="transaction.category" name="category"
+            required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
