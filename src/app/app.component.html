@@ -5,6 +5,5 @@
 <!-- Class gets applied if menuButtonStatus is true -->
 <app-side-nav [ngClass]="{'app-side-nav-open': menuButtonStatus}" *ngIf="!login"></app-side-nav>
 <main [ngClass]="{'main-area-shrink': menuButtonStatus}" *ngIf="!login">
-    <app-months *ngIf="!login"></app-months>
     <app-footer *ngIf="!login"></app-footer>
 </main>

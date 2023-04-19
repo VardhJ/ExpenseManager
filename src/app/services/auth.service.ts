@@ -6,23 +6,32 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  private loggedInStatus = false;
+  public user: any;
+  constructor(private http: HttpClient, private router: Router) {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.loggedInStatus = true;
+      this.user = { email: storedUser };
+    }
+  }
 
-  constructor(private http: HttpClient, private router: Router) { }
   // isLoggedIn() {
   //   return !!localStorage.getItem('token');
   // }
-  private loggedInStatus = false;
-  private user: any;
+
   setLoggedIn(value: boolean, user: any) {
     this.loggedInStatus = value;
     this.user = user;
+    localStorage.setItem('user', this.user.email)
+    console.log(user)
   }
 
   get isLoggedIn() {
     return this.loggedInStatus;
   }
 
-  get getUser() {
+  get currentUser() {
     return this.user;
   }
 

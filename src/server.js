@@ -43,8 +43,11 @@ app.post('/api/login', async (req, res) => {
         return res.status(401).json({ message: 'Incorrect password' });
     }
 
-    res.json({ message: 'Login successful' });
+    const instanceId = user._id;
+    res.json({ id: instanceId, message: 'Login successful' });
 });
+
+
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {

@@ -4,11 +4,26 @@
 
         <li class="nav-list-item">
             <a href="/home">
-                HomePage
+                Dashboard
             </a>
         </li>
         <li class="nav-list-item">
-            <a href="/">
+            <a href="/add">
+                Add expense/income
+            </a>
+        </li>
+        <li class="nav-list-item">
+            <a href="/home">
+                Reports and analysis
+            </a>
+        </li>
+        <li class="nav-list-item" *ngIf="auth.isLoggedIn">
+            <a href="#">
+                User name: <br>{{ userEmail }}
+            </a>
+        </li>
+        <li class="nav-list-item">
+            <a href="/" (click)="logout()">
                 LogOut
             </a>
         </li>
