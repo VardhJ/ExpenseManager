@@ -21,7 +21,7 @@
 <!-- Displaying total money of current user -->
 <div class="total-money">
     <h2>Total Money</h2>
-    <p>{{totalMoney}}</p>
+    <p>Rs. {{this.totalMoney}}</p>
 </div>
 
 <!-- Displaying list of previous transactions -->
@@ -29,7 +29,7 @@
     <h2>Previous Transactions</h2>
     <ul>
         <li *ngFor="let transaction of transactions">
-            <span class="transaction-amount">{{transaction.amount}}</span>
+            <span class="transaction-amount">{{transaction.money}}</span>
             <span class="transaction-category">{{transaction.category}}</span>
         </li>
     </ul>

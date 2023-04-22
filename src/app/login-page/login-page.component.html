@@ -3,6 +3,7 @@
         <h1>Register</h1>
         <h5>New User</h5>
         <div class="form-group">
+
             <label for="email">Email</label>
             <input type="email" class="form-control" name="email" id="email" [(ngModel)]="newUser.email" required>
         </div>
@@ -13,10 +14,13 @@
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
+
     <form (ngSubmit)="onLogin()" class="login-form" #loginForm="ngForm">
         <h1>Login</h1>
         <h5>Existing User</h5>
+
         <div class="form-group">
+
             <label for="email">Email</label>
             <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email" required>
         </div>
@@ -25,6 +29,26 @@
             <input type="password" class="form-control" name="password" id="password" [(ngModel)]="user.password"
                 required>
         </div>
+
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+
+    <!-- <form [formGroup]="form" (ngSubmit)="onLogin(form.value)">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" class="form-control" name="email" formControlName="email">
+
+            <div [hidden]="form.controls['email'].valid || form.controls['email'].pristine" class="alert alert-danger">
+                Username is required.</div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" name="password" formControlName="password">
+            <div [hidden]="form.controls['password'].valid || form.controls['password'].pristine"
+                class="alert alert-danger"> Password is required.</div>
+        </div>
+        <button type="button" (click)="logOut([form])">Check vals</button> 
+        <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Login</button>
+    </form>  -->
+
 </div>

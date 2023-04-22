@@ -23,8 +23,8 @@
             </a>
         </li>
         <div class="userinfo">
-            <h5 *ngIf="auth.isLoggedIn">
-                User name: <br>{{ userEmail }}
+            <h5 *ngIf="auth.isLoggedIn" class="nav-list-item">
+                <br>{{ userEmail }}
             </h5>
             <li class="nav-list-item">
                 <a href="/" (click)="logout()">

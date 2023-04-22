@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 import { AddComponent } from './add/add.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AdviceComponent } from './advice/advice.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { AdviceComponent } from './advice/advice.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    OAuthModule.forRoot(),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

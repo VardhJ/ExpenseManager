@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 interface LoginResponse {
   id: string;
@@ -12,9 +13,11 @@ interface LoginResponse {
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  providers: [FormBuilder]
 })
 export class LoginPageComponent {
+
   newUser = {
     email: '',
     password: '',
@@ -28,27 +31,23 @@ export class LoginPageComponent {
     transactions: []
   };
 
-  arrId: number[] = [];
 
-  constructor(private http: HttpClient, private router: Router, private authser: AuthService, private cookieService: CookieService) { }
+
+  constructor(private http: HttpClient, private router: Router, private authser: AuthService, private cookieService: CookieService, private fb: FormBuilder) {
+  }
 
   onLogin() {
     this.http.post<LoginResponse>('http://localhost:3000/api/login', this.user).subscribe(
       res => {
         console.log(res);
         alert("Successful Login");
-        // let currId = Math.floor(Math.random() * 100);
-        // while (this.arrId.includes(currId)) {
-        //   currId = Math.floor(Math.random() * 100);
-        // }
-        //this.arrId.push(currId)
 
         // Update the authentication status
-        this.authser.setLoggedIn(true, this.user);
+        this.authser.setLoggedIn(true, res);
 
         // Set instance ID in cookie
-        const instanceId = res.id;
-        this.cookieService.set('instanceId', instanceId);
+        // const instanceId = res.id;
+        // this.cookieService.set('instanceId', instanceId);
         this.router.navigate(['home']);
       },
       err => {

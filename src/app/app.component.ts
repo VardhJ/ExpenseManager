@@ -11,7 +11,7 @@ import { NavigationEnd } from '@angular/router';
 export class AppComponent {
   title = 'ExpenseManager';
   login = false;
-  menuButtonStatus: boolean = true;
+  menuButtonStatus: boolean = false;
   constructor(private zone: NgZone, private router: Router) {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {

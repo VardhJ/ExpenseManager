@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
 export class AuthService {
   private loggedInStatus = false;
   public user: any;
+
+  //if stored user exists, set user to that
   constructor(private http: HttpClient, private router: Router) {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.loggedInStatus = true;
-      this.user = { email: storedUser };
+      this.user = storedUser;
     }
   }
 
@@ -25,7 +27,9 @@ export class AuthService {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(this.user)); // stringify the user object before storing
     localStorage.setItem('userEmail', this.user.email)
-    console.log(user)
+    localStorage.setItem('password', this.user.password)
+    localStorage.setItem('totalMoney', this.user.totalMoney)
+    localStorage.setItem('transactions', this.user.transactions)
   }
 
   get isLoggedIn() {
@@ -36,17 +40,21 @@ export class AuthService {
     return this.user;
   }
 
-  getCurrentUser() {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      return JSON.parse(storedUser);
-    } else {
-      return null;
-    }
-  }
 
   logout() {
     this.loggedInStatus = false;
+    const userStr = localStorage.getItem('user');
+    const userOut = userStr ? JSON.parse(userStr) : null;
+    this.http.post('http://localhost:3000/checkout', userOut).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+        alert(err.error.message)
+      },
+    );
+
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     this.router.navigate(['/login']);

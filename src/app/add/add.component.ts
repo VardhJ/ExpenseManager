@@ -14,20 +14,35 @@ export class AddComponent {
     category: ''
   };
 
+  public user: any;
+
   constructor(public auth: AuthService, private http: HttpClient,) {
-    const currentUser = this.auth.currentUser;
-    currentUser.transactions = [];
+  }
+
+
+  ngOnInit() {
+    console.log("helo")
+    this.user = localStorage.getItem('user');
+    console.log(this.user);
   }
 
   onSubmit() {
-    const currentUser = this.auth.currentUser;
+    const userStr = localStorage.getItem('user');
+    const user = userStr ? JSON.parse(userStr) : null;
+
+    //const currentUser = this.auth.currentUser;
     if (this.transaction.money && this.transaction.category) {
       if (this.transaction.money < 0) {
-        currentUser.totalMoney -= Math.abs(this.transaction.money);
+        //currentUser.totalMoney -= Math.abs(this.transaction.money);
+        user['totalMoney'] -= Math.abs(this.transaction.money);
       } else {
-        currentUser.totalMoney += this.transaction.money;
+        //.totalMoney += this.transaction.money;
+        user['totalMoney'] += this.transaction.money;
       }
-      currentUser.transactions.push(this.transaction);
+      //currentUser.transactions.push(this.transaction);
+      user['transactions'].push(this.transaction);
     }
+    localStorage.setItem('user', JSON.stringify(user));
+    console.log(user['totalMoney'], user['transactions'])
   }
 }

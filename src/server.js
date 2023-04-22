@@ -45,7 +45,6 @@ const User = mongoose.model('User', userSchema);
 // Login endpoint
 app.post('/api/login', async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
-
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
@@ -54,8 +53,8 @@ app.post('/api/login', async (req, res) => {
         return res.status(401).json({ message: 'Incorrect password' });
     }
 
-    const instanceId = user._id;
-    res.json({ id: instanceId, message: 'Login successful' });
+    //const instanceId = user._id;
+    res.json(user);
 });
 
 
@@ -80,6 +79,26 @@ app.post('/api/register', async (req, res) => {
 
     res.json({ message: 'Registration successful, proceed to log in' });
 });
+
+
+//To save changed to MongoDB when logging out
+app.post('/checkout', async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+        await user.updateOne({
+            $set: {
+                transactions: req.body.transactions,
+                totalMoney: req.body.totalMoney
+            }
+        });
+        console.log("User updated");
+        res.status(200).send("User updated successfully");
+    } else {
+        console.log("User not found");
+        res.status(404).send("User not found");
+    }
+})
+
 
 // Error handling
 app.use((err, req, res, next) => {
