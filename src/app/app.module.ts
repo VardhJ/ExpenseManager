@@ -15,6 +15,7 @@ import { AddComponent } from './add/add.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AdviceComponent } from './advice/advice.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgChartsModule,
     OAuthModule.forRoot(),
   ],
   providers: [AuthService],

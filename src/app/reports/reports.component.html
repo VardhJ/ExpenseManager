@@ -1,8 +1,12 @@
 <div class="report">
     <h2>Reports and Analysis</h2>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
+    <br>
+    <div style="display: block;" class="pie">
+        <canvas baseChart [type]="'pie'" [datasets]="pieChartData" [labels]="pieChartLabels"
+            [options]="pieChartOptions">
+        </canvas>
     </div>
+    <br><br>
     <div class="table-container">
         <table>
             <thead>
@@ -47,4 +51,5 @@
             </tbody>
         </table>
     </div>
+
 </div>

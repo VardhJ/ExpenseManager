@@ -17,8 +17,6 @@ export class HomePageComponent {
 
     const userStr = localStorage.getItem('user');
     this.curruser = userStr ? JSON.parse(userStr) : null;
-    console.log(this.curruser)
-    console.log(this.curruser['totalMoney'])
     this.totalMoney = this.curruser['totalMoney']
     this.transactions = this.curruser['transactions']
     console.log(this.curruser['transactions'])
