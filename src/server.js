@@ -44,6 +44,7 @@ const User = mongoose.model('User', userSchema);
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
+    console.log(req.body.email)
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
         return res.status(404).json({ message: 'User not found' });

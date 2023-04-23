@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 interface LoginResponse {
   id: string;
@@ -18,26 +18,47 @@ interface LoginResponse {
 })
 export class LoginPageComponent {
 
-  newUser = {
-    email: '',
-    password: '',
-    totalMoney: 0,
-    transactions: []
+  get currLoginEmail() {
+    return this.user.get('email')
   }
-  user = {
-    email: '',
-    password: '',
-    totalMoney: 0,
-    transactions: []
-  };
+
+  get currRegisterEmail() {
+    return this.newUser.get('email')
+  }
+
+  newUser = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    password: new FormControl(''),
+    totalMoney: new FormControl(0),
+    transactions: new FormControl([])
+  });
+  // user = {
+  //   email: '',
+  //   password: '',
+  //   totalMoney: 0,
+  //   transactions: []
+  // };
+  user = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    password: new FormControl(''),
+    totalMoney: new FormControl(0),
+    transactions: new FormControl([])
+  });
 
 
 
   constructor(private http: HttpClient, private router: Router, private authser: AuthService, private cookieService: CookieService, private fb: FormBuilder) {
   }
 
+
+
   onLogin() {
-    this.http.post<LoginResponse>('http://localhost:3000/api/login', this.user).subscribe(
+    console.log(JSON.parse(JSON.stringify(this.user.value)))
+    this.http.post<LoginResponse>('http://localhost:3000/api/login', JSON.parse(JSON.stringify(this.user.value))).subscribe(
       res => {
         console.log(res);
         alert("Successful Login");
@@ -59,7 +80,7 @@ export class LoginPageComponent {
   }
 
   onRegister() {
-    this.http.post('http://localhost:3000/api/register', this.newUser).subscribe(
+    this.http.post('http://localhost:3000/api/register', JSON.parse(JSON.stringify(this.newUser.value))).subscribe(
       res => {
         console.log(res);
         alert("Successful Registration");
