@@ -6,6 +6,7 @@ import { AuthGuard } from './services/auth.guard';
 import { AddComponent } from './add/add.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AdviceComponent } from './advice/advice.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 //ADD  ,canActivate: [AuthGuard] 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'add', component: AddComponent, canActivate: [AuthGuard] },
   { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
   { path: 'advice', component: AdviceComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 
 ];
 

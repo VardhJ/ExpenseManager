@@ -1,36 +1,7 @@
-.total-money {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
-    margin-bottom: 30px;
-}
-
-.transactions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.transaction-amount {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.transaction-category {
-    margin-left: 10px;
-}
-
-h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin-top: 3rem;
-}
-
 .container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    margin-top: 5rem;
     padding: 2rem;
     background-color: #f7f7f7;
     border-radius: 1rem;
@@ -55,4 +26,9 @@ p {
     font-size: 1.2rem;
     line-height: 1.5;
     margin-bottom: 1rem;
+}
+
+.title {
+    margin: auto;
+    padding: 8rem 3rem 0rem 3rem;
 }

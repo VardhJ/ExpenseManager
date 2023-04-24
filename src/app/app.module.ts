@@ -16,6 +16,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { AdviceComponent } from './advice/advice.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgChartsModule } from 'ng2-charts';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgChartsModule } from 'ng2-charts';
     AddComponent,
     ReportsComponent,
     AdviceComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

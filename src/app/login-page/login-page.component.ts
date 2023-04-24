@@ -49,12 +49,8 @@ export class LoginPageComponent {
     transactions: new FormControl([])
   });
 
-
-
   constructor(private http: HttpClient, private router: Router, private authser: AuthService, private cookieService: CookieService, private fb: FormBuilder) {
   }
-
-
 
   onLogin() {
     console.log(JSON.parse(JSON.stringify(this.user.value)))

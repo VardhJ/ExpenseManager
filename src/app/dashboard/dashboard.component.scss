@@ -1,0 +1,28 @@
+.total-money {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.transaction-category {
+    margin-left: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 3rem;
+}

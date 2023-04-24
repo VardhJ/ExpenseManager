@@ -1,3 +1,7 @@
+<h2 class="title">A web application for managing expenses, built with Angular and MongoDB. The application allows users
+    to create
+    and manage expense categories, add and edit expenses, view reports and analytics on spending, and set budgets
+    and alerts.</h2>
 <div class="container">
     <div class="service">
         <h2>Expense Categories</h2>
@@ -15,22 +19,4 @@
         <h2>Budgets and Alerts</h2>
         <p>Set budgets and receive alerts when you exceed them.</p>
     </div>
-</div>
-<h1>Welcome to your dashboard</h1>
-
-<!-- Displaying total money of current user -->
-<div class="total-money">
-    <h2>Total Money</h2>
-    <p>Rs. {{this.totalMoney}}</p>
-</div>
-
-<!-- Displaying list of previous transactions -->
-<div class="transactions">
-    <h2>Previous Transactions</h2>
-    <ul>
-        <li *ngFor="let transaction of transactions">
-            <span class="transaction-amount">{{transaction.money}}</span>
-            <span class="transaction-category">{{transaction.category}}</span>
-        </li>
-    </ul>
 </div>

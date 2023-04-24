@@ -2,6 +2,7 @@ import { OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -16,7 +17,7 @@ export class AddComponent {
 
   public user: any;
 
-  constructor(public auth: AuthService, private http: HttpClient,) {
+  constructor(public auth: AuthService, private http: HttpClient, private router: Router) {
   }
 
 
@@ -43,6 +44,6 @@ export class AddComponent {
       user['transactions'].push(this.transaction);
     }
     localStorage.setItem('user', JSON.stringify(user));
-    console.log(user['totalMoney'], user['transactions'])
+    this.router.navigate(['dashboard'])
   }
 }
