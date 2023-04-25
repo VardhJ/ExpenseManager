@@ -39,7 +39,6 @@ export class ReportsComponent {
     this.curruser = userStr ? JSON.parse(userStr) : null;
     this.totalMoney = this.curruser['totalMoney']
     this.transactions = this.curruser['transactions']
-    console.log(this.transactions)
 
     this.pieChartLabels = this.transactions.map(addCategories)
     this.pieChartData[0].data = this.transactions.map(addMoney)
@@ -51,7 +50,6 @@ export class ReportsComponent {
 
       return Math.abs(trans.money);
     }
-    console.log(this.pieChartData)
   }
 
 }

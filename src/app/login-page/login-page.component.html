@@ -1,63 +1,73 @@
-<div class="container">
-    <form (ngSubmit)="onRegister()" class="register-form" #registerForm="ngForm" [formGroup]="newUser">
-        <h1>Register</h1>
-        <h5>New User</h5>
-        <div class="form-group">
+<div class="main-container">
+    <h1 class="title">Welcome to your Expense Manager</h1>
+    <div class="container">
+        <form (ngSubmit)="onRegister()" class="register-form" #registerForm="ngForm" [formGroup]="newUser">
+            <h1>Register</h1>
+            <h5>New User</h5>
+            <div class="form-group">
 
-            <label for="email">Email</label>
-            <!-- <input type="email" class="form-control" name="email" id="email" [(ngModel)]="newUser.email" required> -->
-            <input [class.is-invalid]="currRegisterEmail?.invalid && currRegisterEmail?.touched" type="email"
-                class="form-control" formControlName="email" />
-            <div *ngIf="(currRegisterEmail?.invalid && currRegisterEmail?.touched) || currRegisterEmail?.dirty">
-                <small *ngIf="currRegisterEmail?.errors?.['required']" class="text-danger">Email is
-                    required</small>
-                <!--question mark(?) is a safe navigation operator-->
-                <small *ngIf="currRegisterEmail?.errors?.['pattern']" class="text-danger">Please provide a valid email
-                    address</small>
+                <label for="email">Email</label>
+                <!-- <input type="email" class="form-control" name="email" id="email" [(ngModel)]="newUser.email" required> -->
+                <input [class.is-invalid]="currRegisterEmail?.invalid && currRegisterEmail?.touched" type="email"
+                    class="form-control" formControlName="email" />
+                <div *ngIf="(currRegisterEmail?.invalid && currRegisterEmail?.touched) || currRegisterEmail?.dirty">
+                    <small *ngIf="currRegisterEmail?.errors?.['required']" class="text-danger">Email is
+                        required</small>
+                    <!--question mark(?) is a safe navigation operator-->
+                    <small *ngIf="currRegisterEmail?.errors?.['pattern']" class="text-danger">Please provide a valid
+                        email
+                        address</small>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <!-- <input type="password" class="form-control" name="password" id="password" [(ngModel)]="newUser.password"
+                    required> -->
+                <input type="password" class="form-control" formControlName="password" />
+
+            </div>
+            <div class="form-group">
+                <label for="pin">Pin (For alternate login)</label>
+                <input type="password" class="form-control" formControlName="pin" />
+
+            </div>
+            <button *ngIf="(!currRegisterEmail?.invalid)" type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+        <form (ngSubmit)="onLogin()" class="login-form" #loginForm="ngForm" [formGroup]="user">
+            <h1>Login</h1>
+            <h5>Existing User</h5>
+
+            <div class="form-group">
+
+                <label for="email">Email</label>
+                <!-- <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email" required> -->
+
+                <input [class.is-invalid]="currLoginEmail?.invalid && currLoginEmail?.touched" type="email"
+                    class="form-control" formControlName="email" />
+                <div *ngIf="(currLoginEmail?.invalid && currLoginEmail?.touched) || currLoginEmail?.dirty">
+                    <small *ngIf="currLoginEmail?.errors?.['required']" class="text-danger">Email is
+                        required</small>
+                    <small *ngIf="currLoginEmail?.errors?.['pattern']" class="text-danger">Please provide a valid email
+                        address</small>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <!-- <input type="password" class="form-control" name="password" id="password" [(ngModel)]="user.password"
+                    required> -->
+
+                <input type="password" class="form-control" formControlName="password" />
+            </div>
+            <div class="form-group">
+                <label for="pin">Pin (For alternate login)</label>
+                <input type="password" class="form-control" formControlName="pin" />
+
             </div>
 
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <!-- <input type="password" class="form-control" name="password" id="password" [(ngModel)]="newUser.password"
-                required> -->
-            <input type="password" class="form-control" formControlName="password" />
-
-        </div>
-        <button *ngIf="(!currRegisterEmail?.invalid)" type="submit" class="btn btn-primary">Register</button>
-    </form>
-
-    <form (ngSubmit)="onLogin()" class="login-form" #loginForm="ngForm" [formGroup]="user">
-        <h1>Login</h1>
-        <h5>Existing User</h5>
-
-        <div class="form-group">
-
-            <label for="email">Email</label>
-            <!-- <input type="email" class="form-control" name="email" id="email" [(ngModel)]="user.email" required> -->
-
-            <input [class.is-invalid]="currLoginEmail?.invalid && currLoginEmail?.touched" type="email"
-                class="form-control" formControlName="email" />
-            <div *ngIf="(currLoginEmail?.invalid && currLoginEmail?.touched) || currLoginEmail?.dirty">
-                <small *ngIf="currLoginEmail?.errors?.['required']" class="text-danger">Email is
-                    required</small>
-                <small *ngIf="currLoginEmail?.errors?.['pattern']" class="text-danger">Please provide a valid email
-                    address</small>
-            </div>
-
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <!-- <input type="password" class="form-control" name="password" id="password" [(ngModel)]="user.password"
-                required> -->
-
-            <input type="password" class="form-control" formControlName="password" />
-
-        </div>
-
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-
-
-
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
 </div>

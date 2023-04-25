@@ -26,6 +26,10 @@ mongoose
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
+
+    //new:
+    pin: Number,
+
     totalMoney: { type: Number, default: 0 },
     transactions: [{
         money: {
@@ -44,13 +48,25 @@ const User = mongoose.model('User', userSchema);
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
-    console.log(req.body.email)
+    console.log(req.body.password)
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
         return res.status(404).json({ message: 'User not found' });
     }
+    if (req.body.password == "" && req.body.pin == null) {
+        return res.status(401).json({ message: 'Password and pin are empty, enter either one' });
+    }
 
+    //condition for either password or pin
     if (user.password !== req.body.password) {
+        if (req.body.pin != null) {
+            if (req.body.pin == user.pin) {
+                return res.json(user);
+            }
+            else {
+                return res.status(401).json({ message: 'Incorrect pin' });
+            }
+        }
         return res.status(401).json({ message: 'Incorrect password' });
     }
 
@@ -72,6 +88,7 @@ app.post('/api/register', async (req, res) => {
     user = new User({
         email: req.body.email,
         password: req.body.password,
+        pin: req.body.pin,
         totalMoney: 0,
         transactions: []
     });

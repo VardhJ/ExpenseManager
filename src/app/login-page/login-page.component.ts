@@ -31,20 +31,30 @@ export class LoginPageComponent {
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl(''),
+
+    //new
+    pin: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]{4}$")
+    ]),
+
     totalMoney: new FormControl(0),
     transactions: new FormControl([])
   });
-  // user = {
-  //   email: '',
-  //   password: '',
-  //   totalMoney: 0,
-  //   transactions: []
-  // };
+
+  //EXISTING USER
   user = new FormGroup({
     email: new FormControl('', [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl(''),
+
+    //new
+    pin: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]{4}$")
+    ]),
+
     totalMoney: new FormControl(0),
     transactions: new FormControl([])
   });
