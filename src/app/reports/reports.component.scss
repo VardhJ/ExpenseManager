@@ -1,38 +1,14 @@
 .report {
     margin: 50px auto;
-    max-width: 800px;
+    width: 90%;
     padding: 3rem;
 }
 
-.chart-container {
-    margin: 20px 0;
-}
-
-.table-container {
-    overflow-x: auto;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
 .pie {
-    width: 30rem;
-    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 30rem;
+    max-height: 30rem;
     margin: auto;
 }

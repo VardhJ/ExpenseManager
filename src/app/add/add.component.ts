@@ -22,9 +22,7 @@ export class AddComponent {
 
 
   ngOnInit() {
-    console.log("helo")
     this.user = localStorage.getItem('user');
-    console.log(this.user);
   }
 
   onSubmit() {
