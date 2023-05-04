@@ -1,7 +1,10 @@
 .report {
     margin: 50px auto;
-    width: 90%;
-    padding: 3rem;
+    width: 70%;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .pie {
@@ -9,6 +12,88 @@
     justify-content: center;
     align-items: center;
     max-width: 30rem;
-    max-height: 30rem;
     margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+canvas {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+h2,
+h3 {
+    color: #333;
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+
+
+
+.tab-container {
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tab-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.scroll-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scroll-button:active {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .report {
+        width: 100%;
+    }
+
+    .pie {
+        padding: 10px;
+    }
 }

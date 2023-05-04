@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartOptions } from 'chart.js';
+import { MatTabGroup } from '@angular/material/tabs';
+import * as Hammer from 'hammerjs';
 
 @Component({
   selector: 'app-reports',
@@ -7,6 +9,14 @@ import { ChartOptions } from 'chart.js';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent {
+  constructor(private elementRef: ElementRef) { }
+
+  selectedIndex: number = 0;
+
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  selectChange(): void {
+    console.log("Selected INDEX: " + this.selectedIndex);
+  }
 
   public curruser: any;
   public totalMoney: any;
@@ -43,18 +53,6 @@ export class ReportsComponent {
     this.totalMoney = this.curruser['totalMoney']
     this.transactions = this.curruser['transactions']
 
-    // this.pieChartLabels = this.transactions.map(addCategories)
-    // this.pieChartData[0].data = this.transactions.map(addMoney)
-
-    // function addCategories(trans: any) {
-    //   return trans.category;
-    // }
-    // function addMoney(trans: any) {
-
-    //   return Math.abs(trans.money);
-    // }
-
-
     this.transactions.forEach((transaction: any) => {
       if (transaction.money < 0) {
         this.pieChartLabels.push(transaction.category);
@@ -65,6 +63,40 @@ export class ReportsComponent {
       }
     });
 
+    //Swipes
+    const hammer = new Hammer(this.elementRef.nativeElement);
+    hammer.on('swipeleft', (ev) => {
+      this.swipe(this.selectedIndex, this.SWIPE_ACTION.LEFT);
+    });
+    hammer.on('swiperight', (ev) => {
+      this.swipe(this.selectedIndex, this.SWIPE_ACTION.RIGHT);
+    });
+
   }
+
+  //Swipable functionality
+
+  swipe(selectedIndex: number, action = this.SWIPE_ACTION.RIGHT) {
+    // Out of range
+    if (this.selectedIndex < 0 || this.selectedIndex >= 3) return;
+
+    // Swipe left, next tab
+    if (action === this.SWIPE_ACTION.LEFT) {
+      const isLast = this.selectedIndex === 2.5;
+      this.selectedIndex = isLast ? 0 : this.selectedIndex + 0.5;
+      console.log("Swipe right - INDEX: " + this.selectedIndex);
+    }
+
+    // Swipe right, previous tab
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      const isFirst = this.selectedIndex === 0;
+      this.selectedIndex = isFirst ? 2 : this.selectedIndex - 0.5;
+      console.log("Swipe left - INDEX: " + this.selectedIndex);
+    }
+  }
+
+
+
+
 
 }
