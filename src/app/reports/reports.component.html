@@ -1,20 +1,39 @@
-<div class="report" (swipeleft)="swipe(selectedIndex, $event.type)" (swiperight)="swipe(selectedIndex, $event.type)">
+<div class="report">
     <h2>Reports and Analysis</h2>
     <mat-tab-group #tabGroup [(selectedIndex)]="selectedIndex" (selectedIndexChange)="selectChange()">
         <mat-tab label="Pie-chart" class="mat-tab-label">
-            <div class="pie" #tabContent>
+            <div class="pie" #tabContent (swipeleft)="swipe(selectedIndex, $event.type)"
+                (swiperight)="swipe(selectedIndex, $event.type)">
                 <canvas baseChart [type]="'pie'" [datasets]="pieChartData" [labels]="pieChartLabels"
                     [options]="pieChartOptions">
                 </canvas>
             </div>
         </mat-tab>
         <mat-tab label="Analysis" class="mat-tab-label">
-            <br>
-            <h3>Total Income: {{this.totalIncome}}</h3>
-            <h3>Total Expense: {{this.totalExpense}}</h3>
+            <div (swipeleft)="swipe(selectedIndex, $event.type)" (swiperight)="swipe(selectedIndex, $event.type)">
+                <br>
+                <h3>Total Income: {{this.totalIncome}}</h3>
+                <h3>Total Expense: {{this.totalExpense}}</h3>
+            </div>
+
         </mat-tab>
-        <mat-tab label="Checking" class="mat-tab-label"> Content 3 </mat-tab>
+        <mat-tab label="Breakdown" class="mat-tab-label">
+            <br><br>
+            <div (swipeleft)="swipe(selectedIndex, $event.type)" (swiperight)="swipe(selectedIndex, $event.type)">
+                <mat-form-field appearance="fill">
+                    <mat-label>Select an option</mat-label>
+                    <mat-select [(value)]="selectedOption">
+                        <div *ngFor="let transaction of uniqueTransactions">
+                            <mat-option value={{transaction.category}}>{{transaction.category}}</mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+                <p>You selected: {{selectedOption}}</p>
+                <div *ngFor="let transaction of transactions">
+                    <li *ngIf="selectedOption==transaction.category">{{(transaction.money)}}</li>
+                </div>
+            </div>
+        </mat-tab>
     </mat-tab-group>
     <br>
-
 </div>

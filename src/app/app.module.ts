@@ -3,7 +3,6 @@ import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -19,6 +18,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { NgChartsModule } from 'ng2-charts';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     ReactiveFormsModule,
     NgChartsModule,
     MatTabsModule,
+    MatSelectModule,
     OAuthModule.forRoot(),
   ],
   providers: [AuthService],
