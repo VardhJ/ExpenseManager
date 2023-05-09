@@ -23,8 +23,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Select an option</mat-label>
                     <mat-select [(value)]="selectedOption">
-                        <div *ngFor="let transaction of uniqueTransactions">
-                            <mat-option value={{transaction.category}}>{{transaction.category}}</mat-option>
+                        <div *ngFor="let category of uniqueCategories">
+                            <mat-option value={{category}}>{{category}}</mat-option>
                         </div>
                     </mat-select>
                 </mat-form-field>

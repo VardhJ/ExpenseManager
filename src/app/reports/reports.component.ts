@@ -13,7 +13,7 @@ export class ReportsComponent {
   public curruser: any;
   public totalMoney: any;
   public transactions: any;
-  public uniqueTransactions: any;
+  public uniqueCategories: string[] = [];
   public totalIncome: number = 0;
   public totalExpense: number = 0;
 
@@ -56,12 +56,25 @@ export class ReportsComponent {
     this.curruser = userStr ? JSON.parse(userStr) : null;
     this.totalMoney = this.curruser['totalMoney']
     this.transactions = this.curruser['transactions']
-    console.log(this.transactions)
 
+    console.log(this.transactions)
     let temp = this.transactions;
     // Populate uniqueTransactions array with unique elements from transactions
-    this.uniqueTransactions = [...new Set(temp)];
-    console.log(this.uniqueTransactions)
+    this.uniqueCategories.push(this.transactions[0].category)
+    let c = 0;
+    for (let i = 1; i < this.transactions.length; i++) {
+      this.uniqueCategories.push(this.transactions[i].category)
+
+      for (let j = 0; j < i; j++) {
+        if (this.uniqueCategories[i - c] == this.uniqueCategories[j]) {
+          this.uniqueCategories.pop();
+          c++;
+          break;
+        }
+      }
+      console.log(this.uniqueCategories)
+    }
+
     this.transactions.forEach((transaction: any) => {
       if (transaction.money < 0) {
         this.pieChartLabels.push(transaction.category);
