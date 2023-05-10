@@ -3,7 +3,6 @@ import { ChartOptions } from 'chart.js';
 import { MatTabGroup } from '@angular/material/tabs';
 import * as Hammer from 'hammerjs';
 
-
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',

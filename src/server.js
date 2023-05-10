@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 var cors = require('cors')
-
+require('dotenv').config()
 
 const app = express();
 
@@ -45,6 +45,40 @@ const userSchema = new mongoose.Schema({
 
 // Create user model
 const User = mongoose.model('User', userSchema);
+
+
+
+//OpenAI
+// const { Configuration, OpenAIApi } = require("openai");
+
+// const configuration = new Configuration({
+//     apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
+
+
+// (async () => {
+
+//     try {
+//         const completion = await openai.createCompletion({
+//             model: "text-davinci-003",
+//             prompt: "Hello world",
+//         });
+//         console.log(completion.data.choices[0].text);
+//     } catch (error) {
+//         if (error.response) {
+//             console.log(error.response.status);
+//             console.log(error.response.data);
+//         } else {
+//             console.log(error.message);
+//         }
+//     }
+// })();
+
+
+
+
+
 
 // Login endpoint
 app.post('/api/login', async (req, res) => {
