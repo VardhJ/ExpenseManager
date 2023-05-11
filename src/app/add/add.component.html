@@ -1,9 +1,12 @@
-<h2>Add Income/Expense</h2>
+<br><br>
+
+<h1>Add Income/Expense</h1>
 <form (ngSubmit)="onSubmit()">
+    <p><strong>Enter income as positive number and expense as negative number:</strong></p>
     <div class="form-group">
         <label for="money">Money:</label>
         <input type="number" class="form-control" id="money" [(ngModel)]="transaction.money" name="money" required>
-    </div>
+    </div><br>
     <div class="form-group">
         <label for="category">Category:</label>
         <input type="text" class="form-control" id="category" [(ngModel)]="transaction.category" name="category"

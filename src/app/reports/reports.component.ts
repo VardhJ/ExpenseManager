@@ -57,32 +57,55 @@ export class ReportsComponent {
     this.transactions = this.curruser['transactions']
 
     console.log(this.transactions)
-    let temp = this.transactions;
     // Populate uniqueTransactions array with unique elements from transactions
     this.uniqueCategories.push(this.transactions[0].category)
     let c = 0;
     for (let i = 1; i < this.transactions.length; i++) {
       this.uniqueCategories.push(this.transactions[i].category)
-
-      for (let j = 0; j < i; j++) {
+      for (let j = 0; j < i - c; j++) {
         if (this.uniqueCategories[i - c] == this.uniqueCategories[j]) {
           this.uniqueCategories.pop();
           c++;
           break;
         }
       }
-      console.log(this.uniqueCategories)
     }
 
+    const categoryDataMap = new Map();
     this.transactions.forEach((transaction: any) => {
       if (transaction.money < 0) {
-        this.pieChartLabels.push(transaction.category);
-        this.pieChartData[0].data.push(Math.abs(transaction.money))
-        this.totalExpense += Math.abs(transaction.money);
+        const category = transaction.category;
+        const amount = Math.abs(transaction.money);
+
+        if (categoryDataMap.has(category)) {
+          // If the category already exists in the map, add the amount to the existing value
+          categoryDataMap.set(category, categoryDataMap.get(category) + amount);
+        } else {
+          // If the category is encountered for the first time, initialize the value in the map
+          categoryDataMap.set(category, amount);
+          this.pieChartLabels.push(category);
+        }
+
+        this.totalExpense += amount;
       } else {
         this.totalIncome += transaction.money;
       }
     });
+
+    // Convert the categoryDataMap to the pieChartData array
+    this.pieChartData[0].data = Array.from(categoryDataMap.values());
+
+
+    // this.transactions.forEach((transaction: any) => {
+    //   if (transaction.money < 0) {
+    //     this.pieChartLabels.push(transaction.category);
+    //     this.pieChartData[0].data.push(Math.abs(transaction.money))
+    //     this.totalExpense += Math.abs(transaction.money);
+    //   } else {
+    //     this.totalIncome += transaction.money;
+    //   }
+    // });
+
 
     //Swipes
     const hammer = new Hammer(this.elementRef.nativeElement);
@@ -94,8 +117,6 @@ export class ReportsComponent {
     });
 
   }
-
-
 
   //Swipable functionality
 

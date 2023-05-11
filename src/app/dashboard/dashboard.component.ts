@@ -20,4 +20,9 @@ export class DashboardComponent {
     console.log(this.curruser['transactions'])
 
   }
+
+  getTimestamp(transaction: any) {
+    const timestamp = new Date(parseInt(transaction._id.substring(0, 8), 16) * 1000);
+    return timestamp.toUTCString();
+  }
 }

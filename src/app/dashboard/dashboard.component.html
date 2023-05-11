@@ -5,16 +5,32 @@
 <!-- Displaying total money of current user -->
 <div class="total-money">
     <h2>Total Money</h2>
-    <p>Rs. {{this.totalMoney}}</p>
+    <h5>Rs. {{this.totalMoney}}</h5>
 </div>
 
 <!-- Displaying list of previous transactions -->
 <div class="transactions">
     <h2>Previous Transactions</h2>
-    <ul>
+    <!-- <ul>
         <li *ngFor="let transaction of transactions">
             <span class="transaction-amount">{{transaction.money}}</span>
             <span class="transaction-category">{{transaction.category}}</span>
         </li>
-    </ul>
+    </ul> -->
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of transactions">
+                <td class="transaction-amount">{{ getTimestamp(transaction) }}</td>
+                <td class="transaction-amount">{{ transaction.money }}</td>
+                <td class="transaction-category">{{ transaction.category }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
