@@ -48,34 +48,86 @@ const User = mongoose.model('User', userSchema);
 
 
 
-//OpenAI
-// const { Configuration, OpenAIApi } = require("openai");
+//OpenAI backend
+// const express = require('express');
+// const app = express();
+// const openai = require('openai');
 
-// const configuration = new Configuration({
-//     apiKey: process.env.OPENAI_API_KEY,
+// // Configure OpenAI
+// const openaiConfig = {
+//   apiKey: process.env.OPENAI_API_KEY,
+// };
+// const openaiClient = new openai.OpenAIApi(openaiConfig);
+
+// // API route for chat completion
+// app.post('/api/openai/chat-completion', (req, res) => {
+//   const messages = req.body.messages;
+
+//   openaiClient.ChatCompletion.create({
+//     model: 'gpt-3.5-turbo',
+//     messages: messages,
+//   })
+//     .then(response => {
+//       res.json(response.data);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//       res.status(500).json({ error: 'Failed to process the chat completion.' });
+//     });
 // });
-// const openai = new OpenAIApi(configuration);
 
 
-// (async () => {
 
-//     try {
-//         const completion = await openai.createCompletion({
-//             model: "text-davinci-003",
-//             prompt: "Hello world",
-//         });
-//         console.log(completion.data.choices[0].text);
-//     } catch (error) {
-//         if (error.response) {
-//             console.log(error.response.status);
-//             console.log(error.response.data);
-//         } else {
-//             console.log(error.message);
+//OpenAI service
+// import { HttpClient } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class OpenAIService {
+//   constructor(private http: HttpClient) {}
+
+//   chatCompletion(messages: any[]) {
+//     return this.http.post('http://localhost:3000/api/openai/chat-completion', { messages });
+//   }
+// }
+
+
+//OpenAI frontend
+// import { Component } from '@angular/core';
+// import { OpenAIService } from './openai.service';
+
+// @Component({
+//   selector: 'app-chat',
+//   templateUrl: './chat.component.html',
+//   styleUrls: ['./chat.component.scss']
+// })
+// export class ChatComponent {
+//   messages = [
+//     { role: 'system', content: 'You are a helpful assistant.' },
+//     { role: 'user', content: 'Who won the world series in 2020?' },
+//     { role: 'assistant', content: 'The Los Angeles Dodgers won the World Series in 2020.' },
+//     { role: 'user', content: 'Where was it played?' }
+//   ];
+
+//   constructor(private openaiService: OpenAIService) {}
+
+//   sendMessage() {
+//     this.openaiService.chatCompletion(this.messages)
+//       .subscribe(
+//         response => {
+//           const reply = response.choices[0].message.content;
+//           console.log(reply);
+//           // Process the reply or update the UI with the generated response
+//         },
+//         error => {
+//           console.log(error);
+//           // Handle the error
 //         }
-//     }
-// })();
-
-
+//       );
+//   }
+// }
 
 
 
