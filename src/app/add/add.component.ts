@@ -42,6 +42,25 @@ export class AddComponent {
       user['transactions'].push(this.transaction);
     }
     localStorage.setItem('user', JSON.stringify(user));
-    this.router.navigate(['dashboard'])
+
+    const userUpdated = localStorage.getItem('user');
+    const userOut = userUpdated ? JSON.parse(userUpdated) : null;
+    console.log(userOut);
+    this.http.post('http://localhost:3000/checkout', userOut).subscribe(
+      res => {
+        console.log(res);
+        localStorage.setItem('user', JSON.stringify(res));
+      },
+      err => {
+        console.log(err);
+        //alert(err.error.message)
+      },
+    );
+
+
+    // Delay the navigation by 1 second
+    setTimeout(() => {
+      this.router.navigate(['dashboard']);
+    }, 1000);
   }
 }

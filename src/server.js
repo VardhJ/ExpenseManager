@@ -104,7 +104,7 @@ app.post('/api/login', async (req, res) => {
         return res.status(401).json({ message: 'Incorrect password' });
     }
 
-    //const instanceId = user._id;
+    //Sending the user details back to client-side
     res.json(user);
 });
 
@@ -133,7 +133,7 @@ app.post('/api/register', async (req, res) => {
 });
 
 
-//To save changed to MongoDB when logging out
+//To save changes to MongoDB when logging out
 app.post('/checkout', async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
@@ -144,12 +144,25 @@ app.post('/checkout', async (req, res) => {
             }
         });
         console.log("User updated");
-        res.status(200).send("User updated successfully");
+        return
     } else {
         console.log("User not found");
-        res.status(404).send("User not found");
+        return res.status(404).send("User not found");
     }
 })
+
+
+//Fetching all user transactions
+app.get('/api/userdata/:userEmail', async (req, res) => {
+    console.log(req.params.userEmail)
+    try {
+        const user = await User.findOne({ email: req.params.userEmail }); // Retrieve only the transactions field
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error retrieving user data' });
+    }
+});
 
 
 // Error handling
