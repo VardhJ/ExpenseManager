@@ -29,9 +29,28 @@
                     </mat-select>
                 </mat-form-field>
                 <p>You selected: {{selectedOption}}</p>
-                <div *ngFor="let transaction of transactions">
-                    <li *ngIf="selectedOption==transaction.category">{{(transaction.money)}}</li>
-                </div>
+                <!-- <div *ngFor="let transaction of transactions">
+                    <li *ngIf="selectedOption==transaction.category">{{(transaction.money)}} | {{
+                        getTimestamp(transaction) }}</li>
+                </div> -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <ng-container *ngFor="let transaction of transactions">
+                        <tbody>
+
+                            <tr *ngIf="selectedOption==transaction.category">
+                                <td class="transaction-amount">{{ getTimestamp(transaction) }}</td>
+                                <td class="transaction-amount">{{ transaction.money }}</td>
+                            </tr>
+
+                        </tbody>
+                    </ng-container>
+                </table>
             </div>
         </mat-tab>
     </mat-tab-group>

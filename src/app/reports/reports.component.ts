@@ -96,17 +96,6 @@ export class ReportsComponent {
     this.pieChartData[0].data = Array.from(categoryDataMap.values());
 
 
-    // this.transactions.forEach((transaction: any) => {
-    //   if (transaction.money < 0) {
-    //     this.pieChartLabels.push(transaction.category);
-    //     this.pieChartData[0].data.push(Math.abs(transaction.money))
-    //     this.totalExpense += Math.abs(transaction.money);
-    //   } else {
-    //     this.totalIncome += transaction.money;
-    //   }
-    // });
-
-
     //Swipes
     const hammer = new Hammer(this.elementRef.nativeElement);
     hammer.on('swipeleft', (ev) => {
@@ -137,5 +126,9 @@ export class ReportsComponent {
       this.selectedIndex = isFirst ? 0 : this.selectedIndex - 0.5;
       console.log("Swipe left - INDEX: " + this.selectedIndex);
     }
+  }
+  getTimestamp(transaction: any) {
+    const timestamp = new Date(parseInt(transaction._id.toString().substring(0, 8), 16) * 1000);
+    return timestamp.toUTCString();
   }
 }
